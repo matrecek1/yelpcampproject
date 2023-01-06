@@ -15,13 +15,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const mongoSanitizer = require("express-mongo-sanitize");
 const User = require("./models/user");
-const mongoDBStore = require("connect-mongo")
+const mongoDBStore = require("connect-mongo");
 
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
-;
-const dbUrl = process.env.DB_URL
+const dbUrl = process.env.DB_URL;
 mongoose.set("strictQuery", true);
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -41,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
-const secret = process.env.SECRET||'thisshouldbeabettersecret;'
+const secret = process.env.SECRET || "thisshouldbeabettersecret;";
 const store = mongoDBStore.create({
     mongoUrl: dbUrl,
     secret,
@@ -49,7 +48,7 @@ const store = mongoDBStore.create({
 });
 store.on("error", function (e) {
     console.log("Session store err", e);
-})
+});
 const sessionConfig = {
     store,
     name: "session",
