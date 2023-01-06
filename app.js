@@ -21,6 +21,7 @@ const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 ;
+const dbUrl = process.env.DB_URL
 mongoose.set("strictQuery", true);
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
